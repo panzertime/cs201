@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+	<head>
+		<title>all things</title>
+		
+		<script>
+			function changePage(){
+				window.location.href = "./index.html";
+			}
+		</script>
+
+		<script src="audiojs/audio.min.js"></script>
+		<script>
+		  audiojs.events.ready(function() {
+		    var as = audiojs.createAll();
+		  });
+		</script>
+	</head>
+	
+	<body style="background-color:rgb(10,10,10); color:white">
+		<h1>all things</h1>
+		<button class="BackButton" onclick="changePage()">BACK</button>
+		<div>
+		<table>
+			<tr>
+				<td><p>This episode is the only one written by Gillian Anderson, who played Scully throughout the show.</p>  
+				<p>Mulder attempts to travel to the UK in order to investigate crop circles, and Scully refuses to participate because crop circles are insufficiently scientific.  Instead, she goes to the hospital (for reasons related to her cancer treatment) and finds an old love interest there with heart problems.  Troubled, she goes about her business while trying not to get too worked up by her ailing friend.  At several points, she meets with surprising and seemingly miraculous circumstances; in one, she narrowly avoids getting in a terrible car accident; in another she meditates and has a "vision" showing the cure for her former colleague's illness.</p></td>
+				<td><img src=allthings-2.jpg width="300px"></img></td>
+			</tr>
+		</table>
+		<h2>The Sky is Broken</h2>
+		<p>This episode's characteristic song is The Sky is Broken, by Moby.  This song featured on his album <i>Play</i>.  In the episode, it plays during Scully's reveries, indicating that she is connected to the larger cosmos in ways she herself is not aware of.</p>
+		<audio src="mp3/sky.mp3" preload="auto"></audio>
+		<button class="BackButton" onclick="changePage()">BACK</button>
+	</body>
+
+</!DOCTYPE>
