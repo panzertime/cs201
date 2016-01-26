@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+		<script>
+			$(document).ready(function () {
+				$("#button").click(function(e){
+					var value = "git ID: ";
+					e.preventDefault();
+					var url = "https://api.github.com/users/"
+					url += $("#name").val();
+					console.log("URL: " + url);
+					$.getJSON(url, function(data) {
+						value += data.id;
+						console.log("Returned ID: " + value);
+						$("#result").text(value);						
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<p>git name:</p>
+		<input type="text" id="name" value=""><br>
+		<input id="button" type="submit" value="Submit">
+		<p id="result">git ID</p>
+	</body>
+</html>
+
