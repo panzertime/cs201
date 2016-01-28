@@ -28,25 +28,63 @@ var url = "https://students.cs.byu.edu/~clement/CS360/ajax/getcity.cgi?q="+$("#c
 });});
 	</script>
 	<script>
-		$("#button").click(function(e){
-  var value = $("#cityfield").val();
-  console.log(value);
-  e.preventDefault();
-  $("#dispcity").text(value);
-});
+		$(document).ready(function () {
+			$("#button").click(function(e){
+				e.preventDefault();
+				var choice = $("#cityfield").val();
+				console.log("Chosen: " + choice);
+				$("#dispcity").text(choice);
+				var turl = "https://api.wunderground.com/api/11c9d6ed356342e9/geolookup/conditions/q/UT/";
+				turl += choice;
+				turl += ".json";
+				console.log("Sending weather request to " + turl);
+				$.ajax({
+					url : turl,
+					dataType : "jsonp",
+					success : function(parsed_json) {
+						var loc = parsed_json['location']['city'];
+						var temp = parsed_json['current_observation']['temperature_string'];
+						var current_weather = parsed_json['current_observation']['weather'];
+						result = "<ul>";
+						result += "<li>Location: " + loc + "</li>";
+						result += "<li>Temperature: " + temp + "</li>";
+						result += "<li>Conditions: " + current_weather + "</li>";
+						result += "</ul>";
+						$("#weather").html(result);
+					}
+				})
+			});
+		});
 	</script>
-
+	<link rel="stylesheet" type="text/css" title="main" href="resume.css">
 </head>
 <body>
-<form>
-Enter A Utah City: <input type="text" id="cityfield" value=""><br>
-Suggestion: <span id="txtHint">Empty</span>
-<input id="button" type="submit" value="Submit">
-</form>
-<p>City</p>
-<textarea id="dispcity">No City</textarea>
-<p>Current Weather</p>
-<div id="weather">No weather</div>
+<div style="align : center">
+<table>
+	<tr class="title-area">
+		<td>
+			<form>
+				<span class="hilite">Enter A Utah City:</span> <input type="text" id="cityfield" value=""><br>
+				<input id="button" type="submit" value="Submit">
+			</form>
+		</td>
+		<td>
+			Suggestion: <span id="txtHint">Empty</span>
+		</td>
+
+	</tr>
+	<tr class="copy-area">
+		<td>
+			<p class="hilite">Current Weather</p>
+			<div id="weather">No weather</div>
+		</td>
+		<td>
+			<p class="hilite">City</p>
+			<textarea id="dispcity">No City</textarea>
+		</td>
+	</tr>
+</table>
+</div>
 
 </body>
 </html>
